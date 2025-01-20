@@ -16,7 +16,6 @@
     state: latest  # noqa: package-latest - Intended to update packages to latest
     exclude: "{{ exclude_packages }}"
 
-
 - name: Upgrade packages (dnf)
   when: ansible_pkg_mgr == "dnf"
   register: patchingresult_dnf
@@ -24,7 +23,6 @@
     name: '*'
     state: latest  # noqa: package-latest - Intended to update packages to latest
     exclude: "{{ exclude_packages }}"
-
 
 - name: Check to see if we need a reboot
   ansible.builtin.command: needs-restarting -r
