@@ -1,0 +1,15 @@
+---
+
+- name: Linux server patching
+  hosts: "{{ _hosts | default(omit) }}"
+  become: true
+
+  tasks:
+    - name: Run preparation steps for RHEL hosts
+      when: ansible_os_family == "RedHat"
+      ansible.builtin.include_role:
+        name: demo.patching.rhel_registration
+
+    - name: Include patching role
+      ansible.builtin.include_role:
+        name: demo.patching.patch_linux
