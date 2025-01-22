@@ -8,14 +8,6 @@
   ansible.builtin.service_facts:
   check_mode: false
 
-- name: Upgrade packages (yum)
-  when: ansible_pkg_mgr == "yum"
-  register: patchingresult_yum
-  ansible.builtin.yum:
-    name: '*'
-    state: latest  # noqa: package-latest - Intended to update packages to latest
-    exclude: "{{ exclude_packages }}"
-
 - name: Upgrade packages (dnf)
   when: ansible_pkg_mgr == "dnf"
   register: patchingresult_dnf
